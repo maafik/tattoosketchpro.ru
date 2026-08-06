@@ -248,26 +248,24 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 12px;
-  border: none;
-  font-size: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 15px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.4px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease;
   width: 100%;
-  color: #0b0b0f;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .order-modal__btn:hover {
   transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-.order-modal__btn--tg:hover {
-  color: #ff3c3d;
+  background: rgba(255, 108, 61, 0.12);
+  border-color: rgba(255, 108, 61, 0.45);
 }
 
 .order-modal__btn:focus-visible {
@@ -275,47 +273,50 @@ body {
   outline-offset: 3px;
 }
 
-.order-modal__btn--tg {
-  background: linear-gradient(135deg, #37aee2, #1e96c8);
-  box-shadow: 0 10px 28px rgba(55, 174, 226, 0.35);
+.order-modal__btn-icon {
+  font-size: 19px;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
 
-.order-modal__btn--wa {
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
-  font-size: 17px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  padding: 14px 18px;
+.order-modal__btn--tg .order-modal__btn-icon {
+  color: #4fc3ff;
 }
 
-.order-modal__btn--vk {
-  background: linear-gradient(135deg, #4c75a3, #2a5885);
-  box-shadow: 0 10px 28px rgba(76, 117, 163, 0.35);
+.order-modal__btn--vk .order-modal__btn-icon {
+  color: #6ea3e0;
 }
 
-.order-modal__btn--wa:hover {
-  color: #fff;
+.order-modal__btn--wa .order-modal__btn-icon {
+  color: #34e07a;
 }
 
-.order-modal__btn--max{
-  background: linear-gradient(135deg, #4c75a3, #2a5885);
-  box-shadow: 0 10px 28px rgba(76, 117, 163, 0.35);
+.order-modal__btn-icon--max {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: url('https://maxicons.ru/icons/Max_logo_black.svg') center/contain no-repeat;
+  filter: invert(1);
 }
 
 .order-modal__btn-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 9px;
   width: 100%;
-  height: 100%;
-  text-align: center;
+  text-align: left;
+}
+
+.order-modal__btn-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
 }
 
 .order-modal__btn-main {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -323,9 +324,9 @@ body {
 }
 
 .order-modal__btn-sub {
-  font-size: 11px;
+  font-size: 10px;
   opacity: 0.8;
-  margin-top: 2px;
+  margin-top: 1px;
   line-height: 1.2;
   text-transform: none;
   letter-spacing: normal;
@@ -448,6 +449,275 @@ body {
   color: #ff0000;
   font-size: 12px;
   opacity: 0.8;
+}
+
+/* Попап заказа: переключатель мессенджеры / форма */
+.order-toggle {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5px;
+  border-radius: 13px;
+  margin: 0 auto 22px;
+  max-width: 380px;
+}
+
+.order-toggle__btn {
+  flex: 1;
+  padding: 11px 10px;
+  border-radius: 9px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.order-toggle__btn:hover {
+  color: #fff;
+}
+
+.order-toggle__btn.active {
+  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
+  color: #0b0b0f;
+  box-shadow: 0 8px 22px rgba(255, 90, 70, 0.35);
+}
+
+/* Попап заказа: панели, которые переключаются */
+.order-panel {
+  display: none;
+}
+
+.order-panel.active {
+  display: block;
+  animation: orderPanelIn 0.25s ease;
+}
+
+@keyframes orderPanelIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Форма заявки */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.order-form__field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.order-form__field input[type="text"],
+.order-form__field textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  transition: 0.25s ease;
+  box-sizing: border-box;
+}
+
+.order-form__field input[type="text"]::placeholder,
+.order-form__field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.order-form__field input[type="text"]:focus,
+.order-form__field textarea:focus {
+  border-color: rgba(255, 108, 61, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 108, 61, 0.15);
+}
+
+.order-form__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  color: #0b0b0f;
+  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
+  box-shadow: 0 10px 28px rgba(255, 90, 70, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.order-form__submit:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.order-form__submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+  transform: none;
+}
+
+.order-form__hint {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  margin: 10px 0 0;
+}
+
+.order-form__note {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11.5px;
+  line-height: 1.4;
+  margin: 7px 0 0;
+}
+
+/* Компактный размер диалога для попапа-подтверждения */
+.order-modal__dialog--sm {
+  max-width: 460px;
+}
+
+/* Попап-подтверждение: финальный шаг после отправки формы */
+.order-thanks {
+  text-align: center;
+  padding: 6px 0 10px;
+}
+
+.order-thanks__icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: #0b0b0f;
+  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
+  box-shadow: 0 10px 28px rgba(255, 90, 70, 0.35);
+}
+
+.order-thanks__title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.order-thanks__text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 420px;
+  margin: 0 auto 20px;
+}
+
+.order-thanks__laststep {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: rgba(255, 108, 61, 0.1);
+  border: 1px solid rgba(255, 108, 61, 0.4);
+  box-shadow: 0 0 0 4px rgba(255, 108, 61, 0.06);
+  margin-bottom: 20px;
+}
+
+.order-thanks__badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
+  color: #0b0b0f;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.order-thanks__instruction {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.order-thanks__instruction strong {
+  color: #ff8a5c;
+  font-size: 18px;
+}
+
+.order-thanks__icons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.order-thanks__icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: 0.25s ease;
+}
+
+.order-thanks__icon-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.order-thanks__icon-btn--tg {
+  color: #4fc3ff;
+  border-color: rgba(79, 195, 255, 0.35);
+}
+
+.order-thanks__icon-btn--vk {
+  color: #6ea3e0;
+  border-color: rgba(110, 163, 224, 0.35);
+}
+
+.order-thanks__icon-btn--wa {
+  color: #34e07a;
+  border-color: rgba(52, 224, 122, 0.35);
+}
+
+.order-thanks__icon-btn--max {
+  color: #ff9d4d;
+  border-color: rgba(255, 157, 77, 0.35);
+}
+
+.order-thanks__icon-img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: url('https://maxicons.ru/icons/Max_logo_black.svg') center/contain no-repeat;
+  filter: invert(1);
 }
 
 body.modal-open {
@@ -1162,6 +1432,32 @@ textarea:focus {
 .footer .social-links a:hover {
   color: var(--accent-color);
   border-color: var(--accent-color);
+}
+
+/* Мессенджеры в футере ярче и заметнее (без перегруза) */
+.social-links__icon {
+  font-size: 18px !important;
+  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, filter 0.25s ease !important;
+}
+
+.social-links__icon--tg {
+  color: #4fc3ff !important;
+  border-color: rgba(79, 195, 255, 0.4) !important;
+}
+
+.social-links__icon--wa {
+  color: #34e07a !important;
+  border-color: rgba(52, 224, 122, 0.4) !important;
+}
+
+.social-links__icon--vk {
+  color: #6ea3e0 !important;
+  border-color: rgba(110, 163, 224, 0.4) !important;
+}
+
+.social-links__icon:hover {
+  transform: translateY(-2px) scale(1.08);
+  filter: brightness(1.2) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.35));
 }
 
 .footer .credits {
