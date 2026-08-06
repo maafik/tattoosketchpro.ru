@@ -1111,29 +1111,6 @@ textarea:focus {
   line-height: 0px;
 }
 
-/* Мессенджеры в шапке ярче и заметнее (без перегруза) */
-.header-social-links__icon {
-  font-size: 19px !important;
-  transition: transform 0.25s ease, color 0.25s ease, filter 0.25s ease !important;
-}
-
-.header-social-links__icon--tg {
-  color: #4fc3ff !important;
-}
-
-.header-social-links__icon--wa {
-  color: #34e07a !important;
-}
-
-.header-social-links__icon--vk {
-  color: #6ea3e0 !important;
-}
-
-.header-social-links__icon:hover {
-  transform: translateY(-2px) scale(1.08);
-  filter: brightness(1.2) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.35));
-}
-
 .price-section.centered {
   text-align: center;
 }
