@@ -92,9 +92,9 @@
       </nav>
 
       <div class="header-social-links">
-        <a href="#" class="header-social-links__icon header-social-links__icon--tg" onclick="openTelegramModal(); return false;" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
-        <a href="#" class="header-social-links__icon header-social-links__icon--wa" onclick="openWhatsAppModal(); return false;" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-        <a href="https://vk.me/tattoo_sketchs1" class="header-social-links__icon header-social-links__icon--vk" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+        <a href="#" class="whatsapp" onclick="openTelegramModal(); return false;"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="whatsapp" onclick="openWhatsAppModal(); return false;"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://vk.me/tattoo_sketchs1" class="instagram"><i class='fab fa-vk'></i></a>
       </div>
 
     </div>
@@ -480,9 +480,9 @@
         <p>© <span>Cиденьникова И.С</span> <strong class="px-1 sitename">эскиз-тату</strong> <span>Все права защищены</span></p>
       </div>
       <div class="social-links d-flex justify-content-center">
-        <a href="#" class="social-links__icon social-links__icon--tg" onclick="openTelegramModal(); return false;" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
-        <a href="#" class="social-links__icon social-links__icon--wa" onclick="openWhatsAppModal(); return false;" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-        <a href="https://vk.me/tattoo_sketchs1" class="social-links__icon social-links__icon--vk" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+        <a href="#" class="whatsapp" onclick="openTelegramModal(); return false;"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="whatsapp" onclick="openWhatsAppModal(); return false;"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://vk.me/tattoo_sketchs1"><i class='fab flex-shrink-0'>&#xf189;</i></a>
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
@@ -509,71 +509,53 @@
       2 правки бесплатно, готово за 48 часов. Твоя идея — мой дизайн!
     </div>
 
-    <!-- Переключатель: мессенджеры / форма заявки -->
-    <div class="order-toggle" role="tablist" aria-label="Как связаться">
-      <button type="button" class="order-toggle__btn active" id="toggleMessengers" role="tab" aria-selected="true">Написать</button>
-      <button type="button" class="order-toggle__btn" id="toggleForm" role="tab" aria-selected="false">Заполнить форму</button>
+    <div class="order-modal__actions">
+
+      <!-- Telegram -->
+      <a class="order-modal__btn order-modal__btn--tg"
+         href="#"
+         onclick="openTelegramModal(); return false;">
+        <span class="order-modal__btn-content">
+          <span class="order-modal__btn-main">Telegram</span>
+          <span class="order-modal__btn-sub">работает с VPN</span>
+        </span>
+      </a>
+
+      <!-- VK -->
+<a class="order-modal__btn order-modal__btn--vk"
+   href="https://vk.me/tattoo_sketchs1"
+   target="_blank"
+   rel="noopener">
+  <span class="order-modal__btn-content">
+    <span class="order-modal__btn-main">Вконтакте</span>
+    <span class="order-modal__btn-sub">Без VPN</span>
+  </span>
+</a>
+
+      <!-- WhatsApp -->
+      <a class="order-modal__btn order-modal__btn--tg"
+         href="#"
+         onclick="openWhatsAppModal(); return false;">
+        <span class="order-modal__btn-content">
+          <span class="order-modal__btn-main">WhatsApp</span>
+          <span class="order-modal__btn-sub">работает с VPN</span>
+        </span>
+      </a>
+
+      <!-- MAX -->
+<a class="order-modal__btn order-modal__btn--max"
+   href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU"
+   target="_blank"
+   rel="noopener">
+  <span class="order-modal__btn-content">
+    <span class="order-modal__btn-main">MAX</span>
+    <span class="order-modal__btn-sub">Без VPN</span>
+  </span>
+</a>
+
+      </a>
+
     </div>
-
-    <!-- Панель 1: мессенджеры + карусель -->
-    <div class="order-panel active" id="orderPanelMessengers" role="tabpanel">
-      <div class="order-modal__actions">
-
-        <!-- Telegram -->
-        <a class="order-modal__btn order-modal__btn--tg"
-           href="#"
-           onclick="openTelegramModal(); return false;">
-          <span class="order-modal__btn-content">
-            <i class="bi bi-telegram order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">Telegram</span>
-            <span class="order-modal__btn-sub">работает с VPN</span>
-            </span>
-          </span>
-        </a>
-
-        <!-- VK -->
-        <a class="order-modal__btn order-modal__btn--vk"
-           href="https://vk.me/tattoo_sketchs1"
-           target="_blank"
-           rel="noopener">
-          <span class="order-modal__btn-content">
-            <i class="fab fa-vk order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">Вконтакте</span>
-            <span class="order-modal__btn-sub">Без VPN</span>
-            </span>
-          </span>
-        </a>
-
-        <!-- WhatsApp -->
-        <a class="order-modal__btn order-modal__btn--wa"
-           href="#"
-           onclick="openWhatsAppModal(); return false;">
-          <span class="order-modal__btn-content">
-            <i class="bi bi-whatsapp order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">WhatsApp</span>
-            <span class="order-modal__btn-sub">работает с VPN</span>
-            </span>
-          </span>
-        </a>
-
-        <!-- MAX -->
-        <a class="order-modal__btn order-modal__btn--max"
-           href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU"
-           target="_blank"
-           rel="noopener">
-          <span class="order-modal__btn-content">
-            <span class="order-modal__btn-icon order-modal__btn-icon--max" aria-hidden="true"></span>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">MAX</span>
-            <span class="order-modal__btn-sub">Без VPN</span>
-            </span>
-          </span>
-        </a>
-
-      </div>
 
       <div class="order-carousel">
         <span class="order-carousel__label">Откроется в новом окне</span>
@@ -612,60 +594,6 @@
         <small>Примеры работ</small>
       </div>
     </div>
-
-    <!-- Панель 2: форма заявки -->
-    <div class="order-panel" id="orderPanelForm" role="tabpanel">
-      <form class="order-form" id="orderRequestForm">
-        <div class="order-form__field">
-          <label for="orderName">Как тебя зовут</label>
-          <input type="text" id="orderName" name="name" placeholder="Например, Алексей" autocomplete="name" required>
-        </div>
-
-        <div class="order-form__field">
-          <label for="orderIdea">Опиши идею</label>
-          <textarea id="orderIdea" name="idea" rows="3" placeholder="Стиль, место на теле, размер..." required></textarea>
-          <p class="order-form__note">Фото-референсы прикреплять здесь не нужно — просто скинь их в чат следующим сообщением, когда откроется последний шаг.</p>
-        </div>
-
-        <button type="submit" class="order-form__submit">Отправить заявку</button>
-        <p class="order-form__hint" id="orderFormHint">Я сразу получу твою заявку — дальше останется один шаг.</p>
-      </form>
-    </div>
-
-  </div>
-</div>
-
-  <!-- Модалка подтверждения: показывается после отправки формы, вместо модалки заказа -->
-  <div class="order-modal" id="thanksModal">
-    <div class="order-modal__dialog order-modal__dialog--sm">
-      <button class="order-modal__close" type="button" aria-label="Закрыть">✕</button>
-
-      <div class="order-thanks">
-        <div class="order-thanks__icon">✓</div>
-        <div class="order-thanks__title">Заявка получена!</div>
-        <div class="order-thanks__text">Твоя идея у меня. И ещё кое-что, чтобы я могла тебе ответить:</div>
-
-        <div class="order-thanks__laststep">
-          <span class="order-thanks__badge">Последний шаг</span>
-          <div class="order-thanks__instruction">Открой чат ниже и отправь <strong>«+»</strong></div>
-        </div>
-
-        <div class="order-thanks__icons">
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--tg" href="https://t.me/Irinasketchs?text=%2B" target="_blank" rel="noopener" aria-label="Telegram">
-            <i class="bi bi-telegram"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener" aria-label="ВКонтакте">
-            <i class="fab fa-vk"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--wa" href="https://wa.me/79517623467?text=%2B" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--max" href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU" target="_blank" rel="noopener" aria-label="MAX">
-            <span class="order-thanks__icon-img" aria-hidden="true"></span>
-          </a>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Telegram Modal -->
@@ -679,21 +607,10 @@
       <div class="order-modal__actions">
         <a class="order-modal__btn order-modal__btn--tg" href="https://t.me/Irinasketchs?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D1%81%D0%BA%D0%B8%D0%B7." target="_blank" rel="noopener">
           <span class="order-modal__btn-content">
-            <i class="bi bi-telegram order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
             <span class="order-modal__btn-main">Telegram</span>
             <span class="order-modal__btn-sub">работает с VPN</span>
-            </span>
           </span>
-        </a>
-        <a class="order-modal__btn order-modal__btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener">
-          <span class="order-modal__btn-content">
-            <i class="fab fa-vk order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">ВКонтакте</span>
-            <span class="order-modal__btn-sub">Без VPN</span>
-            </span>
-          </span>
+                  <a class="order-modal__btn order-modal__btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener">ВКонтакте</a>
         </a>
       </div>
     </div>
@@ -710,19 +627,11 @@
       <div class="order-modal__actions">
         <a class="order-modal__btn order-modal__btn--wa" href="https://wa.me/79517623467?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D1%81%D0%BA%D0%B8%D0%B7." target="_blank" rel="noopener">
           <span class="order-modal__btn-content">
-            <i class="bi bi-whatsapp order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
             <span class="order-modal__btn-main">WhatsApp</span>
             <span class="order-modal__btn-sub">работает с VPN</span>
-            </span>
           </span>
         </a>
-        <a class="order-modal__btn order-modal__btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener">
-          <span class="order-modal__btn-content">
-            <i class="fab fa-vk order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text"><span class="order-modal__btn-main">ВКонтакте</span></span>
-          </span>
-        </a>
+        <a class="order-modal__btn order-modal__btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener">ВКонтакте</a>
       </div>
     </div>
   </div>
@@ -750,8 +659,20 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js?v=2.2" defer></script>
 
-  <!-- Модалки Telegram/WhatsApp с уведомлением про VPN (открываются из иконок в шапке/футере и кнопок в попапе заказа) -->
+  <!-- Tracking scripts - loaded after page load for better performance -->
   <script>
+    // WhatsApp Modal functions
+    function openWhatsAppModal() {
+      document.getElementById('whatsappModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeWhatsAppModal() {
+      document.getElementById('whatsappModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Telegram Modal functions
     function openTelegramModal() {
       document.getElementById('telegramModal').style.display = 'flex';
       document.body.style.overflow = 'hidden';
@@ -761,189 +682,19 @@
       document.getElementById('telegramModal').style.display = 'none';
       document.body.style.overflow = '';
     }
-
-    function openWhatsAppModal() {
-      document.getElementById('whatsappModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeWhatsAppModal() {
-      document.getElementById('whatsappModal').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('click', function (event) {
-      var telegramModal = document.getElementById('telegramModal');
-      var whatsappModal = document.getElementById('whatsappModal');
-      if (event.target === telegramModal) closeTelegramModal();
-      if (event.target === whatsappModal) closeWhatsAppModal();
+    
+    // Close modal when clicking outside
+    document.addEventListener('click', function(event) {
+      const whatsappModal = document.getElementById('whatsappModal');
+      const telegramModal = document.getElementById('telegramModal');
+      if (event.target === whatsappModal) {
+        closeWhatsAppModal();
+      }
+      if (event.target === telegramModal) {
+        closeTelegramModal();
+      }
     });
-  </script>
 
-  <!-- Логика попапа заказа: открытие/закрытие, переключатель мессенджеры/форма, карусель, отправка формы -->
-  <script>
-    (function () {
-      var orderModal = document.getElementById('orderModal');
-      var thanksModal = document.getElementById('thanksModal');
-      if (!orderModal) return;
-
-      var closeBtn = orderModal.querySelector('.order-modal__close');
-      var triggers = document.querySelectorAll('.order-trigger');
-
-      var toggleMessengers = document.getElementById('toggleMessengers');
-      var toggleForm = document.getElementById('toggleForm');
-      var panelMessengers = document.getElementById('orderPanelMessengers');
-      var panelForm = document.getElementById('orderPanelForm');
-
-      function showOrderMessengers() {
-        panelMessengers.classList.add('active');
-        panelForm.classList.remove('active');
-        toggleMessengers.classList.add('active');
-        toggleForm.classList.remove('active');
-        toggleMessengers.setAttribute('aria-selected', 'true');
-        toggleForm.setAttribute('aria-selected', 'false');
-      }
-
-      function showOrderForm() {
-        panelForm.classList.add('active');
-        panelMessengers.classList.remove('active');
-        toggleForm.classList.add('active');
-        toggleMessengers.classList.remove('active');
-        toggleForm.setAttribute('aria-selected', 'true');
-        toggleMessengers.setAttribute('aria-selected', 'false');
-      }
-
-      if (toggleMessengers) toggleMessengers.addEventListener('click', showOrderMessengers);
-      if (toggleForm) toggleForm.addEventListener('click', showOrderForm);
-
-      function openModal(modal) {
-        modal.classList.add('open');
-        document.body.classList.add('modal-open');
-      }
-
-      function closeModal(modal) {
-        modal.classList.remove('open');
-        // Снимаем блокировку скролла, только если больше не открыт ни один попап
-        var anyOpen = document.querySelector('.order-modal.open');
-        if (!anyOpen) document.body.classList.remove('modal-open');
-      }
-
-      function openOrderModal(e) {
-        if (e) e.preventDefault();
-        showOrderMessengers();
-        openModal(orderModal);
-      }
-
-      function closeOrderModal() {
-        closeModal(orderModal);
-      }
-
-      function openThanksModal() {
-        openModal(thanksModal);
-      }
-
-      function closeThanksModal() {
-        closeModal(thanksModal);
-      }
-
-      triggers.forEach(function (t) {
-        t.addEventListener('click', openOrderModal);
-      });
-
-      if (closeBtn) closeBtn.addEventListener('click', closeOrderModal);
-
-      orderModal.addEventListener('click', function (e) {
-        if (e.target === orderModal) closeOrderModal();
-      });
-
-      if (thanksModal) {
-        var thanksCloseBtn = thanksModal.querySelector('.order-modal__close');
-        if (thanksCloseBtn) thanksCloseBtn.addEventListener('click', closeThanksModal);
-        thanksModal.addEventListener('click', function (e) {
-          if (e.target === thanksModal) closeThanksModal();
-        });
-      }
-
-      document.addEventListener('keydown', function (e) {
-        if (e.key !== 'Escape') return;
-        if (thanksModal && thanksModal.classList.contains('open')) closeThanksModal();
-        else if (orderModal.classList.contains('open')) closeOrderModal();
-      });
-
-      // Стрелки карусели
-      var track = document.getElementById('orderCarouselTrack');
-      var arrows = orderModal.querySelectorAll('.order-carousel__arrow');
-      arrows.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (!track) return;
-          var firstItem = track.querySelector('.order-carousel__item');
-          var itemWidth = firstItem ? firstItem.getBoundingClientRect().width + 14 : 260;
-          var dir = parseInt(btn.getAttribute('data-dir'), 10) || 1;
-          track.scrollBy({ left: dir * itemWidth, behavior: 'smooth' });
-        });
-      });
-
-      // --- Отправка формы в Telegram ---
-      // ВАЖНО: сайт статический, без бэкенда, поэтому токен бота ниже декодируется
-      // в браузере прямо перед отправкой запроса. Base64 — это НЕ шифрование:
-      // любой, кто откроет devtools/просмотр кода, за пару секунд восстановит токен.
-      // Это лишь мешает токену просто "бросаться в глаза" при беглом просмотре HTML.
-      // Для боевого сайта такой запрос лучше перенести в небольшую серверную
-      // функцию (Cloudflare Worker, Vercel/Netlify function) и хранить токен там.
-      var TG_T1 = 'ODI1OTM2OTcxMjpBQUdXNi1hUThOdzdmRG5qQld1RkRXSVJuT1JMOGRaMnpzTQ==';
-      var TG_C1 = 'MTA3NjUxMjI3NQ==';
-
-      function tgToken() { return atob(TG_T1); }
-      function tgChatId() { return atob(TG_C1); }
-
-      function sendToTelegram(text) {
-        var url = 'https://api.telegram.org/bot' + tgToken() + '/sendMessage';
-        return fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: tgChatId(), text: text })
-        });
-      }
-
-      // Отправка формы заявки
-      var form = document.getElementById('orderRequestForm');
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          var name = document.getElementById('orderName').value.trim();
-          var idea = document.getElementById('orderIdea').value.trim();
-          var submitBtn = form.querySelector('.order-form__submit');
-
-          var message = 'Новая заявка на эскиз\nИмя: ' + name + '\nИдея: ' + idea;
-
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
-          }
-
-          sendToTelegram(message)
-            .catch(function (err) {
-              // Даже если отправка не удалась, не оставляем человека без ответа:
-              // всё равно ведём к финальному шагу, чтобы он могла написать напрямую.
-              console.error('Ошибка отправки в Telegram:', err);
-            })
-            .finally(function () {
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Отправить заявку';
-              }
-              form.reset();
-              closeOrderModal();
-              openThanksModal();
-            });
-        });
-      }
-    })();
-  </script>
-
-  <!-- Tracking scripts - loaded after page load for better performance -->
-  <script>
     window.addEventListener('load', function() {
       setTimeout(function() {
         // Загружаем изображение с задержкой 1 секунду
