@@ -509,71 +509,27 @@
       2 правки бесплатно, готово за 48 часов. Твоя идея — мой дизайн!
     </div>
 
-    <!-- Переключатель: мессенджеры / форма заявки 
-    <div class="order-toggle" role="tablist" aria-label="Как связаться">
-      <button type="button" class="order-toggle__btn active" id="toggleMessengers" role="tab" aria-selected="true">Написать</button>
-      <button type="button" class="order-toggle__btn" id="toggleForm" role="tab" aria-selected="false">Заполнить форму</button>
-    </div> -->
+    <div class="order-modal__scope-note">
+      Важно: я рисую эскизы — сам дизайн, а не набиваю тату. Для нанесения понадобится мастер-тату у тебя в городе.
+    </div>
 
-    <!-- Панель 1: мессенджеры + карусель -->
-    <div class="order-panel active" id="orderPanelMessengers" role="tabpanel">
-      <div class="order-modal__actions">
+    <!-- Форма заявки (единственный шаг перед переходом в мессенджер) -->
+    <div class="order-panel active" id="orderPanelForm" role="tabpanel">
+      <form class="order-form" id="orderRequestForm">
+        <div class="order-form__field">
+          <label for="orderName">Как тебя зовут</label>
+          <input type="text" id="orderName" name="name" placeholder="Например, Алексей" autocomplete="name" required>
+        </div>
 
-        <!-- Telegram -->
-        <a class="order-modal__btn order-modal__btn--tg"
-           href="#"
-           onclick="openTelegramModal(); return false;">
-          <span class="order-modal__btn-content">
-            <i class="bi bi-telegram order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">Telegram</span>
-            <span class="order-modal__btn-sub">работает с VPN</span>
-            </span>
-          </span>
-        </a>
+        <div class="order-form__field">
+          <label for="orderIdea">Опиши идею</label>
+          <textarea id="orderIdea" name="idea" rows="3" placeholder="Стиль, место на теле, размер..." required></textarea>
+          <p class="order-form__note">Фото-референсы прикреплять здесь не нужно — просто скинь их в чат следующим сообщением, когда откроется последний шаг.</p>
+        </div>
 
-        <!-- VK -->
-        <a class="order-modal__btn order-modal__btn--vk"
-           href="https://vk.me/tattoo_sketchs1"
-           target="_blank"
-           rel="noopener">
-          <span class="order-modal__btn-content">
-            <i class="fab fa-vk order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">Вконтакте</span>
-            <span class="order-modal__btn-sub">Без VPN</span>
-            </span>
-          </span>
-        </a>
-
-        <!-- WhatsApp -->
-        <a class="order-modal__btn order-modal__btn--wa"
-           href="#"
-           onclick="openWhatsAppModal(); return false;">
-          <span class="order-modal__btn-content">
-            <i class="bi bi-whatsapp order-modal__btn-icon"></i>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">WhatsApp</span>
-            <span class="order-modal__btn-sub">работает с VPN</span>
-            </span>
-          </span>
-        </a>
-
-        <!-- MAX -->
-        <a class="order-modal__btn order-modal__btn--max"
-           href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU"
-           target="_blank"
-           rel="noopener">
-          <span class="order-modal__btn-content">
-            <span class="order-modal__btn-icon order-modal__btn-icon--max" aria-hidden="true"></span>
-            <span class="order-modal__btn-text">
-            <span class="order-modal__btn-main">MAX</span>
-            <span class="order-modal__btn-sub">Без VPN</span>
-            </span>
-          </span>
-        </a>
-
-      </div>
+        <button type="submit" class="order-form__submit">Отправить заявку</button>
+        <p class="order-form__hint" id="orderFormHint">Я сразу получу твою заявку — дальше останется один шаг.</p>
+      </form>
 
       <div class="order-carousel">
         <span class="order-carousel__label">Откроется в новом окне</span>
@@ -613,27 +569,28 @@
       </div>
     </div>
 
-    <!-- Панель 2: форма заявки -->
-    <div class="order-panel" id="orderPanelForm" role="tabpanel">
-      <form class="order-form" id="orderRequestForm">
-        <div class="order-form__field">
-          <label for="orderName">Как тебя зовут</label>
-          <input type="text" id="orderName" name="name" placeholder="Например, Алексей" autocomplete="name" required>
-        </div>
-
-        <div class="order-form__field">
-          <label for="orderIdea">Опиши идею</label>
-          <textarea id="orderIdea" name="idea" rows="3" placeholder="Стиль, место на теле, размер..." required></textarea>
-          <p class="order-form__note">Фото-референсы прикреплять здесь не нужно — просто скинь их в чат следующим сообщением, когда откроется последний шаг.</p>
-        </div>
-
-        <button type="submit" class="order-form__submit">Отправить заявку</button>
-        <p class="order-form__hint" id="orderFormHint">Я сразу получу твою заявку — дальше останется один шаг.</p>
-      </form>
-    </div>
-
   </div>
 </div>
+
+  <!-- Попап уточняющих вопросов: показывается вместо отправки, если описание идеи слишком короткое -->
+  <div class="order-modal" id="clarifyModal">
+    <div class="order-modal__dialog order-modal__dialog--sm">
+      <button class="order-modal__close" type="button" aria-label="Закрыть" id="clarifyCloseBtn">✕</button>
+
+      <div class="order-modal__title">Расскажи чуть подробнее</div>
+      <div class="order-modal__text">
+        Чтобы сразу прикинуть эскиз и не переспрашивать в чате, уточни в описании:
+      </div>
+
+      <ul class="order-clarify__list">
+        <li>Стиль — минимализм, реализм, орнамент, скетч и т.п.</li>
+        <li>Где на теле будет тату</li>
+        <li>Примерный размер</li>
+      </ul>
+
+      <button type="button" class="order-form__submit" id="clarifyBackBtn">Хорошо, дополню</button>
+    </div>
+  </div>
 
   <!-- Модалка подтверждения: показывается после отправки формы, вместо модалки заказа -->
   <div class="order-modal" id="thanksModal">
@@ -790,32 +747,6 @@
       var closeBtn = orderModal.querySelector('.order-modal__close');
       var triggers = document.querySelectorAll('.order-trigger');
 
-      var toggleMessengers = document.getElementById('toggleMessengers');
-      var toggleForm = document.getElementById('toggleForm');
-      var panelMessengers = document.getElementById('orderPanelMessengers');
-      var panelForm = document.getElementById('orderPanelForm');
-
-      function showOrderMessengers() {
-        panelMessengers.classList.add('active');
-        panelForm.classList.remove('active');
-        toggleMessengers.classList.add('active');
-        toggleForm.classList.remove('active');
-        toggleMessengers.setAttribute('aria-selected', 'true');
-        toggleForm.setAttribute('aria-selected', 'false');
-      }
-
-      function showOrderForm() {
-        panelForm.classList.add('active');
-        panelMessengers.classList.remove('active');
-        toggleForm.classList.add('active');
-        toggleMessengers.classList.remove('active');
-        toggleForm.setAttribute('aria-selected', 'true');
-        toggleMessengers.setAttribute('aria-selected', 'false');
-      }
-
-      if (toggleMessengers) toggleMessengers.addEventListener('click', showOrderMessengers);
-      if (toggleForm) toggleForm.addEventListener('click', showOrderForm);
-
       function openModal(modal) {
         modal.classList.add('open');
         document.body.classList.add('modal-open');
@@ -830,7 +761,6 @@
 
       function openOrderModal(e) {
         if (e) e.preventDefault();
-        showOrderMessengers();
         openModal(orderModal);
       }
 
@@ -866,7 +796,8 @@
 
       document.addEventListener('keydown', function (e) {
         if (e.key !== 'Escape') return;
-        if (thanksModal && thanksModal.classList.contains('open')) closeThanksModal();
+        if (clarifyModal && clarifyModal.classList.contains('open')) closeClarifyModal(false);
+        else if (thanksModal && thanksModal.classList.contains('open')) closeThanksModal();
         else if (orderModal.classList.contains('open')) closeOrderModal();
       });
 
@@ -883,25 +814,52 @@
         });
       });
 
-      // --- Отправка формы в Telegram ---
-      // ВАЖНО: сайт статический, без бэкенда, поэтому токен бота ниже декодируется
-      // в браузере прямо перед отправкой запроса. Base64 — это НЕ шифрование:
-      // любой, кто откроет devtools/просмотр кода, за пару секунд восстановит токен.
-      // Это лишь мешает токену просто "бросаться в глаза" при беглом просмотре HTML.
-      // Для боевого сайта такой запрос лучше перенести в небольшую серверную
-      // функцию (Cloudflare Worker, Vercel/Netlify function) и хранить токен там.
-      var TG_T1 = 'ODI1OTM2OTcxMjpBQUdXNi1hUThOdzdmRG5qQld1RkRXSVJuT1JMOGRaMnpzTQ==';
-      var TG_C1 = 'MTA3NjUxMjI3NQ==';
+      // --- Отправка формы на почту ---
+      // Сайт статический, без своего бэкенда, поэтому заявка отправляется
+      // через сервис FormSubmit (formsubmit.co) — он просто пересылает
+      // данные формы на указанный email. При самой первой отправке с сайта
+      // на почту maafik@66.ru придёт письмо для подтверждения — его нужно
+      // один раз открыть и подтвердить, дальше заявки будут приходить сами.
+      var ORDER_EMAIL = 'maafik@66.ru';
 
-      function tgToken() { return atob(TG_T1); }
-      function tgChatId() { return atob(TG_C1); }
-
-      function sendToTelegram(text) {
-        var url = 'https://api.telegram.org/bot' + tgToken() + '/sendMessage';
-        return fetch(url, {
+      function sendOrderEmail(name, idea) {
+        return fetch('https://formsubmit.co/ajax/' + encodeURIComponent(ORDER_EMAIL), {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: tgChatId(), text: text })
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: 'Новая заявка на эскиз тату',
+            'Имя': name,
+            'Идея': idea
+          })
+        });
+      }
+
+      // --- Попап с уточняющими вопросами, если описание идеи слишком короткое ---
+      var MIN_IDEA_LENGTH = 15; // минимум символов в описании идеи
+      var clarifyModal = document.getElementById('clarifyModal');
+      var clarifyCloseBtn = document.getElementById('clarifyCloseBtn');
+      var clarifyBackBtn = document.getElementById('clarifyBackBtn');
+      var ideaField = document.getElementById('orderIdea');
+
+      function openClarifyModal() {
+        openModal(clarifyModal);
+      }
+
+      function closeClarifyModal(focusIdea) {
+        closeModal(clarifyModal);
+        if (focusIdea && ideaField) {
+          setTimeout(function () { ideaField.focus(); }, 50);
+        }
+      }
+
+      if (clarifyCloseBtn) clarifyCloseBtn.addEventListener('click', function () { closeClarifyModal(false); });
+      if (clarifyBackBtn) clarifyBackBtn.addEventListener('click', function () { closeClarifyModal(true); });
+      if (clarifyModal) {
+        clarifyModal.addEventListener('click', function (e) {
+          if (e.target === clarifyModal) closeClarifyModal(false);
         });
       }
 
@@ -915,18 +873,22 @@
           var idea = document.getElementById('orderIdea').value.trim();
           var submitBtn = form.querySelector('.order-form__submit');
 
-          var message = 'Новая заявка на эскиз\nИмя: ' + name + '\nИдея: ' + idea;
+          // Если идея описана слишком коротко — не отправляем, а просим уточнить
+          if (idea.length < MIN_IDEA_LENGTH) {
+            openClarifyModal();
+            return;
+          }
 
           if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Отправка...';
           }
 
-          sendToTelegram(message)
+          sendOrderEmail(name, idea)
             .catch(function (err) {
               // Даже если отправка не удалась, не оставляем человека без ответа:
               // всё равно ведём к финальному шагу, чтобы он могла написать напрямую.
-              console.error('Ошибка отправки в Telegram:', err);
+              console.error('Ошибка отправки на почту:', err);
             })
             .finally(function () {
               if (submitBtn) {

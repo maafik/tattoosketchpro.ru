@@ -236,6 +236,20 @@ body {
   font-size: 16px;
 }
 
+.order-modal__scope-note {
+  display: block;
+  text-align: center;
+  max-width: 620px;
+  margin: -8px auto 22px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .order-modal__actions {
   display: grid;
   grid-template-columns: 1fr;
@@ -451,43 +465,6 @@ body {
   opacity: 0.8;
 }
 
-/* Попап заказа: переключатель мессенджеры / форма */
-.order-toggle {
-  display: flex;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 5px;
-  border-radius: 13px;
-  margin: 0 auto 22px;
-  max-width: 380px;
-}
-
-.order-toggle__btn {
-  flex: 1;
-  padding: 11px 10px;
-  border-radius: 9px;
-  border: none;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.65);
-  font-weight: 700;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.order-toggle__btn:hover {
-  color: #fff;
-}
-
-.order-toggle__btn.active {
-  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
-  color: #0b0b0f;
-  box-shadow: 0 8px 22px rgba(255, 90, 70, 0.35);
-}
-
 /* Попап заказа: панели, которые переключаются */
 .order-panel {
   display: none;
@@ -595,6 +572,34 @@ body {
 /* Компактный размер диалога для попапа-подтверждения */
 .order-modal__dialog--sm {
   max-width: 460px;
+}
+
+/* Список уточняющих вопросов в попапе "расскажи подробнее" */
+.order-clarify__list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.order-clarify__list li {
+  position: relative;
+  padding-left: 26px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.order-clarify__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6c3d, #ff3c7d);
 }
 
 /* Попап-подтверждение: финальный шаг после отправки формы */
