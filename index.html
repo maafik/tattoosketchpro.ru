@@ -515,15 +515,7 @@
 
     <!-- Форма заявки (единственный шаг перед переходом в мессенджер) -->
     <div class="order-panel active" id="orderPanelForm" role="tabpanel">
-      <form class="order-form" id="orderRequestForm"
-            action="https://api.web3forms.com/submit"
-            method="POST"
-            target="orderHiddenFrame">
-        <!-- Ключ доступа Web3Forms: получить на web3forms.com, вставить сюда -->
-        <input type="hidden" name="access_key" value="57540f84-291c-484f-98a0-f306405f0471">
-        <input type="hidden" name="subject" value="Новая заявка на эскиз тату">
-        <input type="hidden" name="from_name" value="Форма заявки — эскиз-тату">
-
+      <form class="order-form" id="orderRequestForm">
         <div class="order-form__field">
           <label for="orderName">Как тебя зовут</label>
           <input type="text" id="orderName" name="name" placeholder="Например, Алексей" autocomplete="name" required>
@@ -538,9 +530,6 @@
         <button type="submit" class="order-form__submit">Отправить заявку</button>
         <p class="order-form__hint" id="orderFormHint">Я сразу получу твою заявку — дальше останется один шаг.</p>
       </form>
-
-      <!-- Скрытый iframe: форма отправляется сюда, поэтому страница не перезагружается -->
-      <iframe name="orderHiddenFrame" style="display:none;"></iframe>
 
       <div class="order-carousel">
         <span class="order-carousel__label">Откроется в новом окне</span>
@@ -826,8 +815,8 @@
       });
 
       // --- Валидация идеи выполняется перед реальной отправкой формы ---
-      // Сама отправка идёт нативно через <form action="...web3forms.com..."
-      // target="orderHiddenFrame">, без fetch/AJAX — без ограничений CORS.
+      // Отправка идёт через fetch() на собственную serverless-функцию
+      // /api/send-telegram, которая пересылает заявку в Telegram.
 
       // --- Попап с уточняющими вопросами, если описание идеи слишком короткое ---
       var MIN_IDEA_LENGTH = 15; // минимум символов в описании идеи
@@ -859,37 +848,53 @@
       var form = document.getElementById('orderRequestForm');
       if (form) {
         form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          var name = document.getElementById('orderName').value.trim();
           var idea = document.getElementById('orderIdea').value.trim();
           var submitBtn = form.querySelector('.order-form__submit');
+          var hint = document.getElementById('orderFormHint');
 
           // Если идея описана слишком коротко — не отправляем, а просим уточнить.
-          // Здесь preventDefault обязателен, чтобы форма не улетела с коротким описанием.
           if (idea.length < MIN_IDEA_LENGTH) {
-            e.preventDefault();
             openClarifyModal();
             return;
           }
 
-          // Дальше — НЕ вызываем preventDefault: браузер сам отправит форму
-          // в скрытый iframe (orderHiddenFrame), страница при этом не перезагрузится.
           if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Отправка...';
           }
 
-          // Небольшая задержка, чтобы реальный POST успел уйти, и переключаем
-          // интерфейс на попап "Спасибо". Ответ скрытого iframe нам недоступен
-          // (другой домен), поэтому просто считаем отправку успешной — как и
-          // раньше, человек в любом случае не остаётся без следующего шага.
-          setTimeout(function () {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'Отправить заявку';
-            }
-            form.reset();
-            closeOrderModal();
-            openThanksModal();
-          }, 900);
+          fetch('/api/send-telegram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name, idea: idea })
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                if (!res.ok || !data.ok) throw new Error(data && data.error ? data.error : 'Ошибка отправки');
+                return data;
+              });
+            })
+            .then(function () {
+              form.reset();
+              closeOrderModal();
+              openThanksModal();
+            })
+            .catch(function (err) {
+              console.error('Ошибка отправки заявки:', err);
+              if (hint) {
+                hint.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в мессенджер.';
+                hint.style.color = '#ff6b6b';
+              }
+            })
+            .finally(function () {
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить заявку';
+              }
+            });
         });
       }
     })();
