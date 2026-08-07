@@ -1632,6 +1632,13 @@ textarea:focus {
   bottom: 15px;
 }
 
+/* Прячем кнопку прокрутки наверх, пока открыт любой попап */
+body.modal-open .scroll-top {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
