@@ -515,7 +515,15 @@
 
     <!-- Форма заявки (единственный шаг перед переходом в мессенджер) -->
     <div class="order-panel active" id="orderPanelForm" role="tabpanel">
-      <form class="order-form" id="orderRequestForm">
+      <form class="order-form" id="orderRequestForm"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            target="orderHiddenFrame">
+        <!-- Ключ доступа Web3Forms: получить на web3forms.com, вставить сюда -->
+        <input type="hidden" name="access_key" value="57540f84-291c-484f-98a0-f306405f0471">
+        <input type="hidden" name="subject" value="Новая заявка на эскиз тату">
+        <input type="hidden" name="from_name" value="Форма заявки — эскиз-тату">
+
         <div class="order-form__field">
           <label for="orderName">Как тебя зовут</label>
           <input type="text" id="orderName" name="name" placeholder="Например, Алексей" autocomplete="name" required>
@@ -530,6 +538,9 @@
         <button type="submit" class="order-form__submit">Отправить заявку</button>
         <p class="order-form__hint" id="orderFormHint">Я сразу получу твою заявку — дальше останется один шаг.</p>
       </form>
+
+      <!-- Скрытый iframe: форма отправляется сюда, поэтому страница не перезагружается -->
+      <iframe name="orderHiddenFrame" style="display:none;"></iframe>
 
       <div class="order-carousel">
         <span class="order-carousel__label">Откроется в новом окне</span>
@@ -814,28 +825,9 @@
         });
       });
 
-      // --- Отправка формы на почту ---
-      // Сайт статический, без своего бэкенда, поэтому заявка отправляется
-      // через сервис FormSubmit (formsubmit.co) — он просто пересылает
-      // данные формы на указанный email. При самой первой отправке с сайта
-      // на почту maafik@66.ru придёт письмо для подтверждения — его нужно
-      // один раз открыть и подтвердить, дальше заявки будут приходить сами.
-      var ORDER_EMAIL = 'maafik1234@gmail.com';
-
-      function sendOrderEmail(name, idea) {
-        return fetch('https://formsubmit.co/ajax/' + encodeURIComponent(ORDER_EMAIL), {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            _subject: 'Новая заявка на эскиз тату',
-            'Имя': name,
-            'Идея': idea
-          })
-        });
-      }
+      // --- Валидация идеи выполняется перед реальной отправкой формы ---
+      // Сама отправка идёт нативно через <form action="...web3forms.com..."
+      // target="orderHiddenFrame">, без fetch/AJAX — без ограничений CORS.
 
       // --- Попап с уточняющими вопросами, если описание идеи слишком короткое ---
       var MIN_IDEA_LENGTH = 15; // минимум символов в описании идеи
@@ -867,38 +859,37 @@
       var form = document.getElementById('orderRequestForm');
       if (form) {
         form.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          var name = document.getElementById('orderName').value.trim();
           var idea = document.getElementById('orderIdea').value.trim();
           var submitBtn = form.querySelector('.order-form__submit');
 
-          // Если идея описана слишком коротко — не отправляем, а просим уточнить
+          // Если идея описана слишком коротко — не отправляем, а просим уточнить.
+          // Здесь preventDefault обязателен, чтобы форма не улетела с коротким описанием.
           if (idea.length < MIN_IDEA_LENGTH) {
+            e.preventDefault();
             openClarifyModal();
             return;
           }
 
+          // Дальше — НЕ вызываем preventDefault: браузер сам отправит форму
+          // в скрытый iframe (orderHiddenFrame), страница при этом не перезагрузится.
           if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Отправка...';
           }
 
-          sendOrderEmail(name, idea)
-            .catch(function (err) {
-              // Даже если отправка не удалась, не оставляем человека без ответа:
-              // всё равно ведём к финальному шагу, чтобы он могла написать напрямую.
-              console.error('Ошибка отправки на почту:', err);
-            })
-            .finally(function () {
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Отправить заявку';
-              }
-              form.reset();
-              closeOrderModal();
-              openThanksModal();
-            });
+          // Небольшая задержка, чтобы реальный POST успел уйти, и переключаем
+          // интерфейс на попап "Спасибо". Ответ скрытого iframe нам недоступен
+          // (другой домен), поэтому просто считаем отправку успешной — как и
+          // раньше, человек в любом случае не остаётся без следующего шага.
+          setTimeout(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Отправить заявку';
+            }
+            form.reset();
+            closeOrderModal();
+            openThanksModal();
+          }, 900);
         });
       }
     })();
