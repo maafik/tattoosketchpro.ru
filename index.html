@@ -866,7 +866,7 @@
             submitBtn.textContent = 'Отправка...';
           }
 
-          fetch('/api/send-telegram', {
+          fetch('https://functions.yandexcloud.net/d4edfgmph4osl5rk81p6', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: name, idea: idea })
