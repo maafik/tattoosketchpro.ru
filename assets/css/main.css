@@ -736,6 +736,50 @@ body {
   color: #fff;
 }
 
+.order-fallback__copybox {
+  text-align: left;
+  margin: 0 auto 20px;
+  max-width: 420px;
+}
+
+.order-fallback__textarea {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f8f8f8;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: inherit;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.order-fallback__copybtn {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
+  color: #0b0b0f;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.order-fallback__copybtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.order-fallback__copybtn.copied {
+  background: linear-gradient(135deg, #3ddc84, #2bb673);
+}
+
 body.modal-open {
   overflow: hidden;
   overscroll-behavior: contain;
@@ -764,6 +808,10 @@ body.modal-open {
     align-items: center;
   }
 
+  .order-modal#fallbackModal {
+    align-items: center;
+  }
+
   .order-modal__dialog {
     margin-top: 20px;
     max-height: calc(100vh - 40px);
@@ -773,6 +821,10 @@ body.modal-open {
   }
 
   .order-modal#thanksModal .order-modal__dialog {
+    margin-top: 0;
+  }
+
+  .order-modal#fallbackModal .order-modal__dialog {
     margin-top: 0;
   }
 
