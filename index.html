@@ -1053,25 +1053,114 @@
       if (nameField) nameField.addEventListener('input', saveDraft);
       if (ideaField) ideaField.addEventListener('input', saveDraft);
 
+      // --- Определение источника перехода (UTM + referrer) ---
+      // Фиксируем "первое касание": как только человек впервые за сессию
+      // открыл сайт, запоминаем UTM-метки и referrer в sessionStorage.
+      // Если позже (например, после перехода в модалку) в адресе UTM уже нет —
+      // берём сохранённые данные, а не теряем источник.
+      //
+      // ВАЖНО: приложения ВКонтакте и Telegram на телефоне чаще всего НЕ передают
+      // referrer из соображений приватности — такие переходы будут видны как
+      // "прямой заход / приложение", это ограничение самих приложений, обойти
+      // его на статичном сайте без сервера нельзя. Чтобы точно отличать баннер —
+      // добавляйте в ссылку на баннере UTM-метку, например ?utm_source=vk&utm_medium=banner.
+      function captureTrafficSource() {
+        try {
+          if (sessionStorage.getItem('trafficCaptured')) return;
+
+          var params = new URLSearchParams(window.location.search);
+          var utm = {};
+          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
+            var value = params.get(key);
+            if (value) utm[key] = value;
+          });
+
+          sessionStorage.setItem('trafficUtm', JSON.stringify(utm));
+          sessionStorage.setItem('trafficReferrer', document.referrer || '');
+          sessionStorage.setItem('trafficCaptured', '1');
+        } catch (e) { /* sessionStorage недоступен — просто пропускаем */ }
+      }
+
+      function getTrafficData() {
+        var utm = {};
+        var referrer = '';
+        try {
+          utm = JSON.parse(sessionStorage.getItem('trafficUtm') || '{}');
+          referrer = sessionStorage.getItem('trafficReferrer') || '';
+        } catch (e) { /* noop */ }
+        return { utm: utm, referrer: referrer, sourceLabel: detectSourceLabel(utm, referrer) };
+      }
+
+      function detectSourceLabel(utm, referrer) {
+        // Если есть UTM-метка — это самый надёжный сигнал, используем её.
+        if (utm.utm_source) {
+          var label = utm.utm_source;
+          if (utm.utm_medium) label += ' / ' + utm.utm_medium;
+          if (utm.utm_campaign) label += ' (' + utm.utm_campaign + ')';
+          return label;
+        }
+
+        if (!referrer) return 'Прямой заход / приложение';
+
+        var host = '';
+        try { host = new URL(referrer).hostname.replace(/^www\./, ''); } catch (e) { return 'Прямой заход / приложение'; }
+
+        if (host.indexOf('vk.com') !== -1 || host.indexOf('vk.ru') !== -1) return 'ВКонтакте';
+        if (host.indexOf('yandex.') !== -1) return 'Яндекс';
+        if (host.indexOf('google.') !== -1) return 'Google';
+        if (host.indexOf('t.me') !== -1 || host.indexOf('telegram') !== -1) return 'Telegram';
+        if (host.indexOf('instagram.com') !== -1) return 'Instagram';
+        if (host.indexOf('whatsapp.com') !== -1) return 'WhatsApp';
+
+        return host; // неизвестный источник — показываем как есть
+      }
+
+      captureTrafficSource();
+
       // --- Отправка с таймаутом и одной повторной попыткой ---
       // Без setTimeout на fetch запрос может "зависнуть" при плохой сети и никогда
       // не завершиться ошибкой — из-за этого раньше форма иногда как будто не отправлялась.
-      var TELEGRAM_ENDPOINT = 'https://functions.yandexcloud.net/d4edfgmph4osl5rk81p6';
+      var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-bcPMRd56jM7bn1Nj-m5z7uDSrILfcZygocxnbh_82n9Ox49sbLqE0K1w9xpCojYB/exec';
       var REQUEST_TIMEOUT_MS = 7000;
+
+      function formatDateTime(date) {
+        var pad = function (n) { return String(n).padStart(2, '0'); };
+        return pad(date.getDate()) + '.' + pad(date.getMonth() + 1) + '.' + date.getFullYear() +
+          ' ' + pad(date.getHours()) + ':' + pad(date.getMinutes());
+      }
 
       function sendOrderOnce(payload) {
         var controller = ('AbortController' in window) ? new AbortController() : null;
         var timer = controller ? setTimeout(function () { controller.abort(); }, REQUEST_TIMEOUT_MS) : null;
 
-        return fetch(TELEGRAM_ENDPOINT, {
+        var traffic = getTrafficData();
+
+        var fullPayload = {
+          name: payload.name,
+          idea: payload.idea,
+          dateTime: formatDateTime(new Date()),
+          pageUrl: window.location.href,
+          source: traffic.sourceLabel,
+          referrer: traffic.referrer,
+          utm_source: traffic.utm.utm_source || '',
+          utm_medium: traffic.utm.utm_medium || '',
+          utm_campaign: traffic.utm.utm_campaign || '',
+          utm_content: traffic.utm.utm_content || '',
+          utm_term: traffic.utm.utm_term || ''
+        };
+
+        // Content-Type: text/plain — чтобы браузер не слал CORS-preflight (OPTIONS),
+        // который Google Apps Script Web App не поддерживает. Тело при этом
+        // остаётся валидным JSON, Code.gs парсит его как обычно.
+        return fetch(SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(fullPayload),
           signal: controller ? controller.signal : undefined
         })
           .then(function (res) {
             return res.json().then(function (data) {
-              if (!res.ok || !data.ok) throw new Error(data && data.error ? data.error : 'Ошибка отправки');
+              if (!res.ok || data.result !== 'success') throw new Error(data && data.error ? data.error : 'Ошибка отправки');
               return data;
             });
           })
