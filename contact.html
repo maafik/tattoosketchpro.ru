@@ -131,22 +131,11 @@
     <a href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU"
        target="_blank"
        style="text-decoration: none; color: inherit;"
-       class="d-flex align-items-center"
-
-       onmouseover="this.querySelector('img').src='icons/Max_logo_black.svg'"
-       onmouseout="this.querySelector('img').src='icons/Max_logo.svg'"
-
-       ontouchstart="this.querySelector('img').src='icons/Max_logo_black.svg'"
-       ontouchend="this.querySelector('img').src='icons/Max_logo.svg'"
+       class="d-flex align-items-center max-icon-link"
     >
 
-      <i class="flex-shrink-0">
-        <img src="icons/Max_logo.svg"
-             alt="MAX"
-             width="24"
-             height="24"
-             style="display:block;"
-             loading="lazy">
+      <i class="flex-shrink-0" style="display:inline-flex;">
+        <span aria-hidden="true" style="display:inline-block;width:24px;height:24px;background:url('https://maxicons.ru/icons/Max_logo_black.svg') center / contain no-repeat;filter:brightness(0) invert(1);"></span>
       </i>
 
       <div>
@@ -157,6 +146,13 @@
     </a>
   </div>
 </div>
+
+<style>
+  /* Лёгкий эффект при наведении — не зависит от наличия локальных файлов иконки. */
+  .max-icon-link span { transition: opacity .15s ease, transform .15s ease; }
+  .max-icon-link:hover span,
+  .max-icon-link:focus span { opacity: .8; transform: scale(1.06); }
+</style>
 
             <div class="col-lg-4">
               <div class="info-item d-flex align-items-center">
