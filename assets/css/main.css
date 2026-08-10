@@ -199,46 +199,29 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.order-modal__dialog--sm {
+  max-width: 460px;
+}
+
 .order-modal__close {
   position: absolute;
   top: 12px;
   right: 12px;
   width: 28px;
   height: 28px;
-  padding: 0;
-  margin: 0;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
   font-size: 16px;
-  line-height: 1;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   transition: 0.25s;
 }
 
-.order-modal__close i {
-  display: block;
-  line-height: 1;
-}
-
 .order-modal__close:hover {
   background: rgba(255, 255, 255, 0.16);
-}
-
-/* Скрываем визуальный скроллбар/ползунок диалога, который был виден
-   у верхнего края попапа сразу при открытии — прокрутка при этом остаётся рабочей */
-.order-modal__dialog {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.order-modal__dialog::-webkit-scrollbar {
-  display: none;
 }
 
 .order-modal__title {
@@ -257,20 +240,6 @@ body {
   font-size: 16px;
 }
 
-.order-modal__scope-note {
-  display: block;
-  text-align: center;
-  max-width: 620px;
-  margin: -8px auto 22px;
-  padding: 10px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
 .order-modal__actions {
   display: grid;
   grid-template-columns: 1fr;
@@ -283,24 +252,26 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 15px;
+  border: none;
+  font-size: 17px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.4px;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
   width: 100%;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.06);
+  color: #0b0b0f;
 }
 
 .order-modal__btn:hover {
   transform: translateY(-1px);
-  background: rgba(255, 108, 61, 0.12);
-  border-color: rgba(255, 108, 61, 0.45);
+  filter: brightness(1.05);
+}
+
+.order-modal__btn--tg:hover {
+  color: #ff3c3d;
 }
 
 .order-modal__btn:focus-visible {
@@ -308,50 +279,65 @@ body {
   outline-offset: 3px;
 }
 
-.order-modal__btn-icon {
-  font-size: 19px;
-  margin-bottom: 0;
-  flex-shrink: 0;
+.order-modal__btn--tg {
+  background: linear-gradient(135deg, #37aee2, #1e96c8);
+  box-shadow: 0 10px 28px rgba(55, 174, 226, 0.35);
 }
 
-.order-modal__btn--tg .order-modal__btn-icon {
-  color: #4fc3ff;
+.order-modal__btn--wa {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
+  font-size: 17px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 14px 18px;
 }
 
-.order-modal__btn--vk .order-modal__btn-icon {
-  color: #6ea3e0;
+.order-modal__btn--vk {
+  background: linear-gradient(135deg, #4c75a3, #2a5885);
+  box-shadow: 0 10px 28px rgba(76, 117, 163, 0.35);
 }
 
-.order-modal__btn--wa .order-modal__btn-icon {
-  color: #34e07a;
+.order-modal__btn--wa:hover {
+  color: #fff;
 }
 
-.order-modal__btn-icon--max {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background: url('https://maxicons.ru/icons/Max_logo_black.svg') center/contain no-repeat;
-  filter: invert(1);
+.order-modal__btn--max{
+  background: linear-gradient(135deg, #4c75a3, #2a5885);
+  box-shadow: 0 10px 28px rgba(76, 117, 163, 0.35);
+}
+
+.order-modal__btn--ig {
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+  box-shadow: 0 10px 28px rgba(238, 42, 123, 0.35);
+}
+
+.order-modal__btn--ig:hover {
+  color: #fff;
+}
+
+.order-modal__btn--fb {
+  background: linear-gradient(135deg, #00b2ff, #006aff, #a033ff);
+  box-shadow: 0 10px 28px rgba(0, 106, 255, 0.35);
+}
+
+.order-modal__btn--fb:hover {
+  color: #fff;
 }
 
 .order-modal__btn-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 9px;
   width: 100%;
-  text-align: left;
-}
-
-.order-modal__btn-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
+  height: 100%;
+  text-align: center;
 }
 
 .order-modal__btn-main {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -359,9 +345,9 @@ body {
 }
 
 .order-modal__btn-sub {
-  font-size: 10px;
+  font-size: 11px;
   opacity: 0.8;
-  margin-top: 1px;
+  margin-top: 2px;
   line-height: 1.2;
   text-transform: none;
   letter-spacing: normal;
@@ -486,7 +472,44 @@ body {
   opacity: 0.8;
 }
 
-/* Попап заказа: панели, которые переключаются */
+/* Order modal: messenger / form toggle switch */
+.order-toggle {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5px;
+  border-radius: 13px;
+  margin: 0 auto 22px;
+  max-width: 380px;
+}
+
+.order-toggle__btn {
+  flex: 1;
+  padding: 11px 10px;
+  border-radius: 9px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.order-toggle__btn:hover {
+  color: #fff;
+}
+
+.order-toggle__btn.active {
+  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
+  color: #0b0b0f;
+  box-shadow: 0 8px 22px rgba(255, 90, 70, 0.35);
+}
+
+/* Order modal: sliding panels */
 .order-panel {
   display: none;
 }
@@ -501,7 +524,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Форма заявки */
+/* Order request form */
 .order-form {
   display: flex;
   flex-direction: column;
@@ -546,6 +569,40 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 108, 61, 0.15);
 }
 
+.order-form__radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.order-form__radio {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.order-form__radio:has(input:checked) {
+  border-color: rgba(255, 108, 61, 0.55);
+  background: rgba(255, 108, 61, 0.12);
+  color: #fff;
+}
+
+.order-form__radio input {
+  accent-color: #ff6b3d;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
 .order-form__submit {
   display: inline-flex;
   align-items: center;
@@ -569,12 +626,6 @@ body {
   filter: brightness(1.05);
 }
 
-.order-form__submit:disabled {
-  opacity: 0.7;
-  cursor: default;
-  transform: none;
-}
-
 .order-form__hint {
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
@@ -590,40 +641,7 @@ body {
   margin: 7px 0 0;
 }
 
-/* Компактный размер диалога для попапа-подтверждения */
-.order-modal__dialog--sm {
-  max-width: 460px;
-}
-
-/* Список уточняющих вопросов в попапе "расскажи подробнее" */
-.order-clarify__list {
-  list-style: none;
-  margin: 0 0 22px;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.order-clarify__list li {
-  position: relative;
-  padding-left: 26px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 14.5px;
-  line-height: 1.5;
-}
-
-.order-clarify__list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 7px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff6c3d, #ff3c7d);
-}
-
-/* Попап-подтверждение: финальный шаг после отправки формы */
+/* Order modal: final "thanks" step (after form submit) */
 .order-thanks {
   text-align: center;
   padding: 6px 0 10px;
@@ -718,34 +736,6 @@ body {
   color: #fff;
 }
 
-.order-thanks__icon-btn--tg {
-  color: #4fc3ff;
-  border-color: rgba(79, 195, 255, 0.35);
-}
-
-.order-thanks__icon-btn--vk {
-  color: #6ea3e0;
-  border-color: rgba(110, 163, 224, 0.35);
-}
-
-.order-thanks__icon-btn--wa {
-  color: #34e07a;
-  border-color: rgba(52, 224, 122, 0.35);
-}
-
-.order-thanks__icon-btn--max {
-  color: #ff9d4d;
-  border-color: rgba(255, 157, 77, 0.35);
-}
-
-.order-thanks__icon-img {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background: url('https://maxicons.ru/icons/Max_logo_black.svg') center/contain no-repeat;
-  filter: invert(1);
-}
-
 body.modal-open {
   overflow: hidden;
   overscroll-behavior: contain;
@@ -770,12 +760,20 @@ body.modal-open {
     align-items: flex-start;
   }
 
+  .order-modal#thanksModal {
+    align-items: center;
+  }
+
   .order-modal__dialog {
     margin-top: 20px;
     max-height: calc(100vh - 40px);
     max-height: calc(100svh - 40px);
     max-height: calc(100dvh - 40px);
     height: auto;
+  }
+
+  .order-modal#thanksModal .order-modal__dialog {
+    margin-top: 0;
   }
 
   .order-carousel__item {
@@ -1460,32 +1458,6 @@ textarea:focus {
   border-color: var(--accent-color);
 }
 
-/* Мессенджеры в футере ярче и заметнее (без перегруза) */
-.social-links__icon {
-  font-size: 18px !important;
-  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, filter 0.25s ease !important;
-}
-
-.social-links__icon--tg {
-  color: #4fc3ff !important;
-  border-color: rgba(79, 195, 255, 0.4) !important;
-}
-
-.social-links__icon--wa {
-  color: #34e07a !important;
-  border-color: rgba(52, 224, 122, 0.4) !important;
-}
-
-.social-links__icon--vk {
-  color: #6ea3e0 !important;
-  border-color: rgba(110, 163, 224, 0.4) !important;
-}
-
-.social-links__icon:hover {
-  transform: translateY(-2px) scale(1.08);
-  filter: brightness(1.2) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.35));
-}
-
 .footer .credits {
   margin-top: 10px;
   font-size: 13px;
@@ -1630,13 +1602,6 @@ textarea:focus {
   visibility: visible;
   opacity: 1;
   bottom: 15px;
-}
-
-/* Прячем кнопку прокрутки наверх, пока открыт любой попап */
-body.modal-open .scroll-top {
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none;
 }
 
 /*--------------------------------------------------------------
@@ -3250,106 +3215,3 @@ section,
   font-size: 14px;
 }
 
-
-/* Кнопка "Примеры работ" под формой заказа */
-.order-examples-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  margin-top: 14px;
-  padding: 12px 16px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  color: #fff;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: border-color .25s ease, background .25s ease, transform .15s ease;
-}
-
-.order-examples-trigger:hover {
-  border-color: var(--accent-color, #c9a24b);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.order-examples-trigger:active {
-  transform: scale(0.98);
-}
-
-/* Секция отзывов */
-.reviews-section {
-  padding: 70px 0;
-  background: #0a0a0a;
-}
-
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.review-card {
-  background: #141414;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  transition: transform .25s ease, border-color .25s ease;
-}
-
-.review-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(201, 162, 75, 0.35);
-}
-
-.review-card__stars {
-  color: var(--accent-color, #c9a24b);
-  font-size: 0.95rem;
-  letter-spacing: 2px;
-}
-
-.review-card__text {
-  color: #ccc;
-  font-size: 0.98rem;
-  line-height: 1.7;
-  flex-grow: 1;
-}
-
-.review-card__author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.review-card__avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-color, #c9a24b), #8a6c2f);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0a0a0a;
-  font-weight: 700;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.review-card__name {
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.review-card__meta {
-  color: #888;
-  font-size: 0.8rem;
-}

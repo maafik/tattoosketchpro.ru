@@ -573,7 +573,7 @@
 
         <div class="order-form__field">
           <label for="orderIdea">Опиши идею</label>
-          <textarea id="orderIdea" name="idea" rows="3" placeholder="Стиль, место на теле, размер..." required></textarea>
+          <textarea id="orderIdea" name="idea" rows="3" placeholder="Стиль, место на теле, размер..." required>Здравствуйте, хочу заказать эскиз: </textarea>
           <p class="order-form__note">Фото-референсы прикреплять здесь не нужно — просто скинь их в чат следующим сообщением, когда откроется последний шаг.</p>
         </div>
 
@@ -824,6 +824,14 @@
       function openOrderModal(e) {
         if (e) e.preventDefault();
         openModal(orderModal);
+        var ideaFieldEl = document.getElementById('orderIdea');
+        if (ideaFieldEl) {
+          setTimeout(function () {
+            var pos = ideaFieldEl.value.length;
+            ideaFieldEl.focus();
+            ideaFieldEl.setSelectionRange(pos, pos);
+          }, 50);
+        }
       }
 
       function closeOrderModal() {
@@ -902,7 +910,7 @@
       // которая пересылает заявку в Telegram.
 
       // --- Попап с уточняющими вопросами, если описание идеи слишком короткое ---
-      var MIN_IDEA_LENGTH = 15; // минимум символов в описании идеи
+      var MIN_IDEA_LENGTH = 70; // минимум символов в описании идеи (35 текста-заглушки + 35 от пользователя)
       var clarifyModal = document.getElementById('clarifyModal');
       var clarifyCloseBtn = document.getElementById('clarifyCloseBtn');
       var clarifyBackBtn = document.getElementById('clarifyBackBtn');
