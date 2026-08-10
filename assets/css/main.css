@@ -736,6 +736,12 @@ body {
   color: #fff;
 }
 
+.order-thanks__icon-img {
+  width: 20px;
+  height: 20px;
+  background: url('assets/img/max-icon.svg') center / contain no-repeat;
+}
+
 .order-fallback__copybox {
   text-align: left;
   margin: 0 auto 20px;
