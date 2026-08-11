@@ -559,34 +559,72 @@
       2 правки бесплатно, готово за 48 часов. Твоя идея — мой дизайн!
     </div>
 
-    <div class="order-modal__scope-note">
-      Важно: я рисую эскизы — сам дизайн, а не набиваю тату. Для нанесения понадобится мастер-тату у тебя в городе.
+    <div class="order-modal__actions">
+      <a class="order-modal__btn order-modal__btn--tg" href="https://t.me/Irinasketchs?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D1%81%D0%BA%D0%B8%D0%B7." target="_blank" rel="noopener">
+        <span class="order-modal__btn-content">
+          <i class="bi bi-telegram order-modal__btn-icon"></i>
+          <span class="order-modal__btn-text">
+            <span class="order-modal__btn-main">Telegram</span>
+            <span class="order-modal__btn-sub">работает с VPN</span>
+          </span>
+        </span>
+      </a>
+      <a class="order-modal__btn order-modal__btn--wa" href="https://wa.me/79517623467?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%8D%D1%81%D0%BA%D0%B8%D0%B7." target="_blank" rel="noopener">
+        <span class="order-modal__btn-content">
+          <i class="bi bi-whatsapp order-modal__btn-icon"></i>
+          <span class="order-modal__btn-text">
+            <span class="order-modal__btn-main">WhatsApp</span>
+            <span class="order-modal__btn-sub">работает с VPN</span>
+          </span>
+        </span>
+      </a>
+      <a class="order-modal__btn order-modal__btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener">
+        <span class="order-modal__btn-content">
+          <i class="fab fa-vk order-modal__btn-icon"></i>
+          <span class="order-modal__btn-text">
+            <span class="order-modal__btn-main">ВКонтакте</span>
+            <span class="order-modal__btn-sub">без VPN</span>
+          </span>
+        </span>
+      </a>
+      <a class="order-modal__btn order-modal__btn--max" href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU" target="_blank" rel="noopener">
+        <span class="order-modal__btn-content">
+          <span class="order-modal__btn-icon order-modal__btn-icon--max" aria-hidden="true"></span>
+          <span class="order-modal__btn-text">
+            <span class="order-modal__btn-main">MAX</span>
+            <span class="order-modal__btn-sub">без VPN</span>
+          </span>
+        </span>
+      </a>
     </div>
 
-    <!-- Форма заявки (единственный шаг перед переходом в мессенджер) -->
-    <div class="order-panel active" id="orderPanelForm" role="tabpanel">
-      <form class="order-form" id="orderRequestForm">
-        <div class="order-form__field">
-          <label for="orderName">Как тебя зовут</label>
-          <input type="text" id="orderName" name="name" placeholder="Например, Алексей" autocomplete="name" required>
-        </div>
-
-        <div class="order-form__field">
-          <label for="orderIdea">Опиши идею</label>
-          <textarea id="orderIdea" name="idea" rows="3" placeholder="Стиль, место на теле, размер..." required>Здравствуйте, хочу заказать эскиз: </textarea>
-          <p class="order-form__note">Фото-референсы прикреплять здесь не нужно — просто скинь их в чат следующим сообщением, когда откроется последний шаг.</p>
-        </div>
-
-        <button type="submit" class="order-form__submit">Отправить заявку</button>
-        <p class="order-form__hint" id="orderFormHint">Я сразу получу твою заявку — дальше останется один шаг.</p>
-        <button type="button" class="order-examples-trigger" id="openExamplesBtn">
-          <i class="bi bi-images"></i> Посмотреть примеры работ
-        </button>
-      </form>
-    </div>
+    <button type="button" class="order-examples-trigger" id="openExamplesBtn">
+      <i class="bi bi-images"></i> Посмотреть примеры работ
+    </button>
 
   </div>
 </div>
+
+  <!-- Попап с важной информацией: показывается перед выбором мессенджера -->
+  <div class="order-modal" id="orderInfoModal">
+    <div class="order-modal__dialog order-modal__dialog--sm">
+      <button class="order-modal__close" type="button" aria-label="Закрыть" id="orderInfoCloseBtn"><i class="bi bi-x-lg"></i></button>
+
+      <div class="order-modal__title">Прежде чем начнём</div>
+
+      <div class="order-modal__text" style="margin-bottom: 18px;">
+        Коротко о том, как я работаю, чтобы не было недопонимания.
+      </div>
+
+      <div class="order-thanks__laststep" style="width: 100%; box-sizing: border-box; align-items: flex-start;">
+        <span class="order-thanks__badge">Важно</span>
+        <p class="order-scope-note">Я рисую эскизы — <strong>сам дизайн</strong>, а не набиваю тату. Для нанесения понадобится мастер-тату у тебя в городе.</p>
+        <p class="order-scope-note">Если вы хотите набить тату — пожалуйста, не пишите: я эскизы не набиваю.</p>
+      </div>
+
+      <button type="button" class="order-form__submit" id="orderInfoContinueBtn" style="width: 100%; margin-top: 20px;">Понятно, к мессенджерам</button>
+    </div>
+  </div>
 
   <!-- Попап с примерами работ: вынесен из формы заказа отдельно -->
   <div class="order-modal" id="examplesModal">
@@ -628,92 +666,6 @@
             <button class="order-carousel__arrow order-carousel__arrow--prev" type="button" data-dir="-1">‹</button>
             <button class="order-carousel__arrow order-carousel__arrow--next" type="button" data-dir="1">›</button>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Попап уточняющих вопросов: показывается вместо отправки, если описание идеи слишком короткое -->
-  <div class="order-modal" id="clarifyModal">
-    <div class="order-modal__dialog order-modal__dialog--sm">
-      <button class="order-modal__close" type="button" aria-label="Закрыть" id="clarifyCloseBtn"><i class="bi bi-x-lg"></i></button>
-
-      <div class="order-modal__title">Расскажи чуть подробнее</div>
-      <div class="order-modal__text">
-        Чтобы сразу прикинуть эскиз и не переспрашивать в чате, уточни в описании:
-      </div>
-
-      <ul class="order-clarify__list">
-        <li>Стиль — минимализм, реализм, орнамент, скетч и т.п.</li>
-        <li>Где на теле будет тату</li>
-        <li>Примерный размер</li>
-      </ul>
-
-      <button type="button" class="order-form__submit" id="clarifyBackBtn">Хорошо, дополню</button>
-    </div>
-  </div>
-
-  <!-- Модалка подтверждения: показывается после отправки формы, вместо модалки заказа -->
-  <div class="order-modal" id="thanksModal">
-    <div class="order-modal__dialog order-modal__dialog--sm">
-      <button class="order-modal__close" type="button" aria-label="Закрыть"><i class="bi bi-x-lg"></i></button>
-
-      <div class="order-thanks">
-        <div class="order-thanks__icon">✓</div>
-        <div class="order-thanks__title">Заявка получена!</div>
-        <div class="order-thanks__text">Твоя идея у меня. И ещё кое-что, чтобы я могла тебе ответить:</div>
-
-        <div class="order-thanks__laststep">
-          <span class="order-thanks__badge">Последний шаг</span>
-          <div class="order-thanks__instruction">Открой чат ниже и отправь <strong>«+»</strong></div>
-        </div>
-
-        <div class="order-thanks__icons">
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--tg" href="https://t.me/Irinasketchs?text=%2B" target="_blank" rel="noopener" aria-label="Telegram">
-            <i class="bi bi-telegram"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener" aria-label="ВКонтакте">
-            <i class="fab fa-vk"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--wa" href="https://wa.me/79517623467?text=%2B" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--max" href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU" target="_blank" rel="noopener" aria-label="MAX">
-            <span class="order-thanks__icon-img" aria-hidden="true" style="display:inline-block;width:20px;height:20px;background:url(&#39;https://maxicons.ru/icons/Max_logo_black.svg&#39;) center / contain no-repeat;filter:brightness(0) invert(1);"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Модалка на случай сбоя отправки: показывает текст идеи для копирования и ссылки на мессенджеры -->
-  <div class="order-modal" id="fallbackModal">
-    <div class="order-modal__dialog order-modal__dialog--sm">
-      <button class="order-modal__close" type="button" aria-label="Закрыть"><i class="bi bi-x-lg"></i></button>
-
-      <div class="order-thanks">
-        <div class="order-thanks__icon" style="background: linear-gradient(135deg, #6b6b76, #3a3a42); box-shadow: 0 10px 28px rgba(0,0,0,0.35);">!</div>
-        <div class="order-thanks__title">Форма не отправилась</div>
-        <div class="order-thanks__text">Похоже, сайт не смог отправить заявку. Скопируйте текст ниже и пришлите его мне в мессенджер — я отвечу сразу:</div>
-
-        <div class="order-fallback__copybox">
-          <textarea id="fallbackIdeaText" class="order-fallback__textarea" readonly></textarea>
-          <button type="button" class="order-fallback__copybtn" id="fallbackCopyBtn">Скопировать текст</button>
-        </div>
-
-        <div class="order-thanks__icons">
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--tg" href="https://t.me/Irinasketchs" target="_blank" rel="noopener" aria-label="Telegram">
-            <i class="bi bi-telegram"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--vk" href="https://vk.me/tattoo_sketchs1" target="_blank" rel="noopener" aria-label="ВКонтакте">
-            <i class="fab fa-vk"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--wa" href="https://wa.me/79517623467" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-          <a class="order-thanks__icon-btn order-thanks__icon-btn--max" href="https://max.ru/u/f9LHodD0cOKFTOiDTiyeETaoW0tU1m-Z9Y6-FG8W3-4ZgeaolF8IkPWE2fU" target="_blank" rel="noopener" aria-label="MAX">
-            <span class="order-thanks__icon-img" aria-hidden="true" style="display:inline-block;width:20px;height:20px;background:url(&#39;https://maxicons.ru/icons/Max_logo_black.svg&#39;) center / contain no-repeat;filter:brightness(0) invert(1);"></span>
-          </a>
         </div>
       </div>
     </div>
@@ -831,14 +783,13 @@
     });
   </script>
 
-  <!-- Логика попапа заказа: открытие/закрытие, попап примеров работ, карусель, отправка формы -->
+  <!-- Логика попапов заказа: инфо-попап -> попап с мессенджерами, попап примеров работ, карусель -->
   <script>
     (function () {
       var orderModal = document.getElementById('orderModal');
-      var thanksModal = document.getElementById('thanksModal');
-      var fallbackModal = document.getElementById('fallbackModal');
+      var orderInfoModal = document.getElementById('orderInfoModal');
       var examplesModal = document.getElementById('examplesModal');
-      if (!orderModal) return;
+      if (!orderModal || !orderInfoModal) return;
 
       var closeBtn = orderModal.querySelector('.order-modal__close');
       var triggers = document.querySelectorAll('.order-trigger');
@@ -855,80 +806,23 @@
         if (!anyOpen) document.body.classList.remove('modal-open');
       }
 
-      function openOrderModal(e) {
+      // Первый шаг: попап с важной информацией
+      function openOrderInfoModal(e) {
         if (e) e.preventDefault();
+        openModal(orderInfoModal);
+      }
+
+      function closeOrderInfoModal() {
+        closeModal(orderInfoModal);
+      }
+
+      // Второй шаг: попап с кнопками мессенджеров
+      function openOrderModal() {
         openModal(orderModal);
-        var ideaFieldEl = document.getElementById('orderIdea');
-        if (ideaFieldEl) {
-          setTimeout(function () {
-            var pos = ideaFieldEl.value.length;
-            ideaFieldEl.focus();
-            ideaFieldEl.setSelectionRange(pos, pos);
-          }, 50);
-        }
       }
 
       function closeOrderModal() {
         closeModal(orderModal);
-      }
-
-      function openThanksModal() {
-        openModal(thanksModal);
-      }
-
-      function closeThanksModal() {
-        closeModal(thanksModal);
-      }
-
-      function openFallbackModal(ideaText) {
-        if (!fallbackModal) return;
-        var textarea = document.getElementById('fallbackIdeaText');
-        if (textarea) textarea.value = ideaText || '';
-        closeModal(orderModal);
-        openModal(fallbackModal);
-      }
-
-      function closeFallbackModal() {
-        closeModal(fallbackModal);
-      }
-
-      if (fallbackModal) {
-        var fallbackCloseBtn = fallbackModal.querySelector('.order-modal__close');
-        if (fallbackCloseBtn) fallbackCloseBtn.addEventListener('click', closeFallbackModal);
-        fallbackModal.addEventListener('click', function (e) {
-          if (e.target === fallbackModal) closeFallbackModal();
-        });
-
-        var fallbackCopyBtn = document.getElementById('fallbackCopyBtn');
-        if (fallbackCopyBtn) {
-          fallbackCopyBtn.addEventListener('click', function () {
-            var textarea = document.getElementById('fallbackIdeaText');
-            if (!textarea) return;
-
-            function markCopied() {
-              fallbackCopyBtn.textContent = 'Скопировано ✓';
-              fallbackCopyBtn.classList.add('copied');
-              setTimeout(function () {
-                fallbackCopyBtn.textContent = 'Скопировать текст';
-                fallbackCopyBtn.classList.remove('copied');
-              }, 2000);
-            }
-
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText(textarea.value).then(markCopied).catch(function () {
-                textarea.focus();
-                textarea.select();
-                document.execCommand('copy');
-                markCopied();
-              });
-            } else {
-              textarea.focus();
-              textarea.select();
-              document.execCommand('copy');
-              markCopied();
-            }
-          });
-        }
       }
 
       function openExamplesModal(e) {
@@ -940,25 +834,30 @@
         if (examplesModal) closeModal(examplesModal);
       }
 
+      // Клик по любой кнопке "Заказать эскиз" открывает сначала инфо-попап
       triggers.forEach(function (t) {
-        t.addEventListener('click', openOrderModal);
+        t.addEventListener('click', openOrderInfoModal);
+      });
+
+      var orderInfoCloseBtn = document.getElementById('orderInfoCloseBtn');
+      var orderInfoContinueBtn = document.getElementById('orderInfoContinueBtn');
+      if (orderInfoCloseBtn) orderInfoCloseBtn.addEventListener('click', closeOrderInfoModal);
+      if (orderInfoContinueBtn) {
+        orderInfoContinueBtn.addEventListener('click', function () {
+          closeOrderInfoModal();
+          openOrderModal();
+        });
+      }
+      orderInfoModal.addEventListener('click', function (e) {
+        if (e.target === orderInfoModal) closeOrderInfoModal();
       });
 
       if (closeBtn) closeBtn.addEventListener('click', closeOrderModal);
-
       orderModal.addEventListener('click', function (e) {
         if (e.target === orderModal) closeOrderModal();
       });
 
-      if (thanksModal) {
-        var thanksCloseBtn = thanksModal.querySelector('.order-modal__close');
-        if (thanksCloseBtn) thanksCloseBtn.addEventListener('click', closeThanksModal);
-        thanksModal.addEventListener('click', function (e) {
-          if (e.target === thanksModal) closeThanksModal();
-        });
-      }
-
-      // Попап "Примеры работ" — открывается кнопкой из формы заказа, не закрывает саму форму
+      // Попап "Примеры работ" — открывается кнопкой из попапа с мессенджерами
       var openExamplesBtn = document.getElementById('openExamplesBtn');
       var examplesCloseBtn = document.getElementById('examplesCloseBtn');
       if (openExamplesBtn) openExamplesBtn.addEventListener('click', openExamplesModal);
@@ -971,13 +870,12 @@
 
       document.addEventListener('keydown', function (e) {
         if (e.key !== 'Escape') return;
-        if (clarifyModal && clarifyModal.classList.contains('open')) closeClarifyModal(false);
-        else if (examplesModal && examplesModal.classList.contains('open')) closeExamplesModal();
-        else if (thanksModal && thanksModal.classList.contains('open')) closeThanksModal();
+        if (examplesModal && examplesModal.classList.contains('open')) closeExamplesModal();
         else if (orderModal.classList.contains('open')) closeOrderModal();
+        else if (orderInfoModal.classList.contains('open')) closeOrderInfoModal();
       });
 
-      // Стрелки карусели (карусель теперь живёт в попапе examplesModal)
+      // Стрелки карусели (карусель живёт в попапе examplesModal)
       var track = document.getElementById('orderCarouselTrack');
       var arrows = document.querySelectorAll('.order-carousel__arrow');
       arrows.forEach(function (btn) {
@@ -989,247 +887,9 @@
           track.scrollBy({ left: dir * itemWidth, behavior: 'smooth' });
         });
       });
-
-      // --- Валидация идеи выполняется перед реальной отправкой формы ---
-      // Отправка идёт через fetch() на собственную serverless-функцию в Yandex Cloud,
-      // которая пересылает заявку в Telegram.
-
-      // --- Попап с уточняющими вопросами, если описание идеи слишком короткое ---
-      var MIN_IDEA_LENGTH = 70; // минимум символов в описании идеи (35 текста-заглушки + 35 от пользователя)
-      var clarifyModal = document.getElementById('clarifyModal');
-      var clarifyCloseBtn = document.getElementById('clarifyCloseBtn');
-      var clarifyBackBtn = document.getElementById('clarifyBackBtn');
-      var ideaField = document.getElementById('orderIdea');
-      var nameField = document.getElementById('orderName');
-
-      function openClarifyModal() {
-        openModal(clarifyModal);
-      }
-
-      function closeClarifyModal(focusIdea) {
-        closeModal(clarifyModal);
-        if (focusIdea && ideaField) {
-          setTimeout(function () { ideaField.focus(); }, 50);
-        }
-      }
-
-      if (clarifyCloseBtn) clarifyCloseBtn.addEventListener('click', function () { closeClarifyModal(false); });
-      if (clarifyBackBtn) clarifyBackBtn.addEventListener('click', function () { closeClarifyModal(true); });
-      if (clarifyModal) {
-        clarifyModal.addEventListener('click', function (e) {
-          if (e.target === clarifyModal) closeClarifyModal(false);
-        });
-      }
-
-      // --- Автосохранение полей формы, чтобы текст не терялся при закрытии попапа ---
-      // Сохраняем в localStorage при каждом вводе, восстанавливаем при загрузке страницы,
-      // очищаем только после успешной отправки заявки.
-      var DRAFT_KEY = 'orderFormDraft';
-
-      function saveDraft() {
-        try {
-          localStorage.setItem(DRAFT_KEY, JSON.stringify({
-            name: nameField ? nameField.value : '',
-            idea: ideaField ? ideaField.value : ''
-          }));
-        } catch (e) { /* localStorage недоступен — просто не сохраняем */ }
-      }
-
-      function restoreDraft() {
-        try {
-          var raw = localStorage.getItem(DRAFT_KEY);
-          if (!raw) return;
-          var draft = JSON.parse(raw);
-          if (nameField && draft.name) nameField.value = draft.name;
-          if (ideaField && draft.idea) ideaField.value = draft.idea;
-        } catch (e) { /* повреждённый черновик — игнорируем */ }
-      }
-
-      function clearDraft() {
-        try { localStorage.removeItem(DRAFT_KEY); } catch (e) { /* noop */ }
-      }
-
-      restoreDraft();
-      if (nameField) nameField.addEventListener('input', saveDraft);
-      if (ideaField) ideaField.addEventListener('input', saveDraft);
-
-      // --- Определение источника перехода (UTM + referrer) ---
-      // Фиксируем "первое касание": как только человек впервые за сессию
-      // открыл сайт, запоминаем UTM-метки и referrer в sessionStorage.
-      // Если позже (например, после перехода в модалку) в адресе UTM уже нет —
-      // берём сохранённые данные, а не теряем источник.
-      //
-      // ВАЖНО: приложения ВКонтакте и Telegram на телефоне чаще всего НЕ передают
-      // referrer из соображений приватности — такие переходы будут видны как
-      // "прямой заход / приложение", это ограничение самих приложений, обойти
-      // его на статичном сайте без сервера нельзя. Чтобы точно отличать баннер —
-      // добавляйте в ссылку на баннере UTM-метку, например ?utm_source=vk&utm_medium=banner.
-      function captureTrafficSource() {
-        try {
-          if (sessionStorage.getItem('trafficCaptured')) return;
-
-          var params = new URLSearchParams(window.location.search);
-          var utm = {};
-          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
-            var value = params.get(key);
-            if (value) utm[key] = value;
-          });
-
-          sessionStorage.setItem('trafficUtm', JSON.stringify(utm));
-          sessionStorage.setItem('trafficReferrer', document.referrer || '');
-          sessionStorage.setItem('trafficCaptured', '1');
-        } catch (e) { /* sessionStorage недоступен — просто пропускаем */ }
-      }
-
-      function getTrafficData() {
-        var utm = {};
-        var referrer = '';
-        try {
-          utm = JSON.parse(sessionStorage.getItem('trafficUtm') || '{}');
-          referrer = sessionStorage.getItem('trafficReferrer') || '';
-        } catch (e) { /* noop */ }
-        return { utm: utm, referrer: referrer, sourceLabel: detectSourceLabel(utm, referrer) };
-      }
-
-      function detectSourceLabel(utm, referrer) {
-        // Если есть UTM-метка — это самый надёжный сигнал, используем её.
-        if (utm.utm_source) {
-          var label = utm.utm_source;
-          if (utm.utm_medium) label += ' / ' + utm.utm_medium;
-          if (utm.utm_campaign) label += ' (' + utm.utm_campaign + ')';
-          return label;
-        }
-
-        if (!referrer) return 'Прямой заход / приложение';
-
-        var host = '';
-        try { host = new URL(referrer).hostname.replace(/^www\./, ''); } catch (e) { return 'Прямой заход / приложение'; }
-
-        if (host.indexOf('vk.com') !== -1 || host.indexOf('vk.ru') !== -1) return 'ВКонтакте';
-        if (host.indexOf('yandex.') !== -1) return 'Яндекс';
-        if (host.indexOf('google.') !== -1) return 'Google';
-        if (host.indexOf('t.me') !== -1 || host.indexOf('telegram') !== -1) return 'Telegram';
-        if (host.indexOf('instagram.com') !== -1) return 'Instagram';
-        if (host.indexOf('whatsapp.com') !== -1) return 'WhatsApp';
-
-        return host; // неизвестный источник — показываем как есть
-      }
-
-      captureTrafficSource();
-
-      // --- Отправка с таймаутом и одной повторной попыткой ---
-      // Без setTimeout на fetch запрос может "зависнуть" при плохой сети и никогда
-      // не завершиться ошибкой — из-за этого раньше форма иногда как будто не отправлялась.
-      var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-bcPMRd56jM7bn1Nj-m5z7uDSrILfcZygocxnbh_82n9Ox49sbLqE0K1w9xpCojYB/exec';
-      var REQUEST_TIMEOUT_MS = 7000;
-
-      function formatDateTime(date) {
-        var pad = function (n) { return String(n).padStart(2, '0'); };
-        return pad(date.getDate()) + '.' + pad(date.getMonth() + 1) + '.' + date.getFullYear() +
-          ' ' + pad(date.getHours()) + ':' + pad(date.getMinutes());
-      }
-
-      function sendOrderOnce(payload) {
-        var controller = ('AbortController' in window) ? new AbortController() : null;
-        var timer = controller ? setTimeout(function () { controller.abort(); }, REQUEST_TIMEOUT_MS) : null;
-
-        var traffic = getTrafficData();
-
-        var fullPayload = {
-          name: payload.name,
-          idea: payload.idea,
-          dateTime: formatDateTime(new Date()),
-          pageUrl: window.location.href,
-          source: traffic.sourceLabel,
-          referrer: traffic.referrer,
-          utm_source: traffic.utm.utm_source || '',
-          utm_medium: traffic.utm.utm_medium || '',
-          utm_campaign: traffic.utm.utm_campaign || '',
-          utm_content: traffic.utm.utm_content || '',
-          utm_term: traffic.utm.utm_term || ''
-        };
-
-        // Content-Type: text/plain — чтобы браузер не слал CORS-preflight (OPTIONS),
-        // который Google Apps Script Web App не поддерживает. Тело при этом
-        // остаётся валидным JSON, Code.gs парсит его как обычно.
-        return fetch(SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(fullPayload),
-          signal: controller ? controller.signal : undefined
-        })
-          .then(function (res) {
-            return res.json().then(function (data) {
-              if (!res.ok || data.result !== 'success') throw new Error(data && data.error ? data.error : 'Ошибка отправки');
-              return data;
-            });
-          })
-          .finally(function () {
-            if (timer) clearTimeout(timer);
-          });
-      }
-
-      function sendOrderWithRetry(payload, attemptsLeft) {
-        return sendOrderOnce(payload).catch(function (err) {
-          if (attemptsLeft > 1) return sendOrderWithRetry(payload, attemptsLeft - 1);
-          throw err;
-        });
-      }
-
-      // Отправка формы заявки
-      var form = document.getElementById('orderRequestForm');
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          var name = nameField.value.trim();
-          var idea = ideaField.value.trim();
-          var submitBtn = form.querySelector('.order-form__submit');
-          var hint = document.getElementById('orderFormHint');
-
-          // Если идея описана слишком коротко — не отправляем, а просим уточнить.
-          if (idea.length < MIN_IDEA_LENGTH) {
-            openClarifyModal();
-            return;
-          }
-
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
-          }
-          if (hint) {
-            hint.textContent = 'Я сразу получу твою заявку — дальше останется один шаг.';
-            hint.style.color = '';
-          }
-
-          sendOrderWithRetry({ name: name, idea: idea }, 1)
-            .then(function () {
-              form.reset();
-              clearDraft();
-              closeOrderModal();
-              openThanksModal();
-            })
-            .catch(function (err) {
-              console.error('Ошибка отправки заявки:', err);
-              // Не получилось отправить (в т.ч. долгий ответ сервера) — показываем
-              // попап с текстом заявки, чтобы человек мог скопировать и прислать в мессенджер.
-              var fullText = (name ? name + '\n' : '') + idea;
-              openFallbackModal(fullText);
-              if (hint) {
-                hint.textContent = 'Я сразу получу твою заявку — дальше останется один шаг.';
-                hint.style.color = '';
-              }
-            })
-            .finally(function () {
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Отправить заявку';
-              }
-            });
-        });
-      }
     })();
   </script>
+
 
   <!-- Tracking scripts - loaded after page load for better performance -->
   <script>

@@ -251,103 +251,55 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 12px;
-  border: none;
-  font-size: 17px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.2s ease;
   width: 100%;
-  color: #0b0b0f;
+  color: #f4f4f4;
 }
 
 .order-modal__btn:hover {
   transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-.order-modal__btn--tg:hover {
+  border-color: rgba(255, 60, 61, 0.45);
+  background: rgba(255, 60, 61, 0.06);
   color: #ff3c3d;
 }
 
 .order-modal__btn:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #ff3c3d;
   outline-offset: 3px;
-}
-
-.order-modal__btn--tg {
-  background: linear-gradient(135deg, #37aee2, #1e96c8);
-  box-shadow: 0 10px 28px rgba(55, 174, 226, 0.35);
-}
-
-.order-modal__btn--wa {
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
-  font-size: 17px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  padding: 14px 18px;
-}
-
-.order-modal__btn--vk {
-  background: linear-gradient(135deg, #4c75a3, #2a5885);
-  box-shadow: 0 10px 28px rgba(76, 117, 163, 0.35);
-}
-
-.order-modal__btn--wa:hover {
-  color: #fff;
-}
-
-.order-modal__btn--max{
-  background: linear-gradient(135deg, #4c75a3, #2a5885);
-  box-shadow: 0 10px 28px rgba(76, 117, 163, 0.35);
-}
-
-.order-modal__btn--ig {
-  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
-  box-shadow: 0 10px 28px rgba(238, 42, 123, 0.35);
-}
-
-.order-modal__btn--ig:hover {
-  color: #fff;
-}
-
-.order-modal__btn--fb {
-  background: linear-gradient(135deg, #00b2ff, #006aff, #a033ff);
-  box-shadow: 0 10px 28px rgba(0, 106, 255, 0.35);
-}
-
-.order-modal__btn--fb:hover {
-  color: #fff;
 }
 
 .order-modal__btn-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   width: 100%;
-  height: 100%;
-  text-align: center;
+}
+
+.order-modal__btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .order-modal__btn-main {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
   line-height: 1.2;
 }
 
 .order-modal__btn-sub {
-  font-size: 11px;
+  font-size: 10.5px;
   opacity: 0.8;
-  margin-top: 2px;
   line-height: 1.2;
   text-transform: none;
   letter-spacing: normal;
@@ -356,8 +308,71 @@ body {
 .order-modal__btn-phone {
   font-size: 10px;
   opacity: 0.7;
-  margin-top: 2px;
   line-height: 1.2;
+}
+
+.order-modal__btn-icon {
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* MAX icon: use the official background-image technique from maxicons.ru,
+   inverted to white for the dark button (same trick already used elsewhere
+   on the site), then swapped to a red-tinted filter on hover to match the
+   other icons/text turning red. */
+.order-modal__btn-icon--max {
+  width: 20px;
+  height: 20px;
+  background: url('https://maxicons.ru/icons/Max_logo_black.svg') center / contain no-repeat;
+  filter: brightness(0) invert(1);
+  transition: filter 0.25s ease;
+}
+
+.order-modal__btn:hover .order-modal__btn-icon--max {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(94%) saturate(7482%) hue-rotate(357deg) brightness(101%) contrast(101%);
+}
+
+/* Order modal: button leading to the "examples" popup */
+.order-examples-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.order-examples-trigger:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #fff;
+}
+
+/* Order modal: scope/info popup shown before the messenger choice */
+.order-scope-note {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.order-scope-note strong {
+  color: #ff8a5c;
+}
+
+.order-scope-note + .order-scope-note {
+  margin-top: 10px;
 }
 
 .order-carousel {
@@ -472,137 +487,7 @@ body {
   opacity: 0.8;
 }
 
-/* Order modal: messenger / form toggle switch */
-.order-toggle {
-  display: flex;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 5px;
-  border-radius: 13px;
-  margin: 0 auto 22px;
-  max-width: 380px;
-}
-
-.order-toggle__btn {
-  flex: 1;
-  padding: 11px 10px;
-  border-radius: 9px;
-  border: none;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.65);
-  font-weight: 700;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.order-toggle__btn:hover {
-  color: #fff;
-}
-
-.order-toggle__btn.active {
-  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
-  color: #0b0b0f;
-  box-shadow: 0 8px 22px rgba(255, 90, 70, 0.35);
-}
-
-/* Order modal: sliding panels */
-.order-panel {
-  display: none;
-}
-
-.order-panel.active {
-  display: block;
-  animation: orderPanelIn 0.25s ease;
-}
-
-@keyframes orderPanelIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Order request form */
-.order-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 4px;
-}
-
-.order-form__field label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 8px;
-}
-
-.order-form__field input[type="text"],
-.order-form__field textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff;
-  font-size: 15px;
-  font-family: inherit;
-  outline: none;
-  resize: vertical;
-  transition: 0.25s ease;
-  box-sizing: border-box;
-}
-
-.order-form__field input[type="text"]::placeholder,
-.order-form__field textarea::placeholder {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.order-form__field input[type="text"]:focus,
-.order-form__field textarea:focus {
-  border-color: rgba(255, 108, 61, 0.6);
-  box-shadow: 0 0 0 3px rgba(255, 108, 61, 0.15);
-}
-
-.order-form__radio-group {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.order-form__radio {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 14px;
-  border-radius: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.order-form__radio:has(input:checked) {
-  border-color: rgba(255, 108, 61, 0.55);
-  background: rgba(255, 108, 61, 0.12);
-  color: #fff;
-}
-
-.order-form__radio input {
-  accent-color: #ff6b3d;
-  width: 15px;
-  height: 15px;
-  margin: 0;
-}
-
+/* CTA button reused across order popups (e.g. the "continue" button in the info popup) */
 .order-form__submit {
   display: inline-flex;
   align-items: center;
@@ -624,21 +509,6 @@ body {
 .order-form__submit:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
-}
-
-.order-form__hint {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
-  margin: 10px 0 0;
-}
-
-.order-form__note {
-  text-align: left;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 11.5px;
-  line-height: 1.4;
-  margin: 7px 0 0;
 }
 
 /* Order modal: final "thanks" step (after form submit) */
@@ -736,50 +606,6 @@ body {
   color: #fff;
 }
 
-.order-fallback__copybox {
-  text-align: left;
-  margin: 0 auto 20px;
-  max-width: 420px;
-}
-
-.order-fallback__textarea {
-  width: 100%;
-  min-height: 90px;
-  resize: vertical;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #f8f8f8;
-  font-size: 14px;
-  line-height: 1.5;
-  font-family: inherit;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-.order-fallback__copybtn {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #ff6b3d, #ff3c7d);
-  color: #0b0b0f;
-  font-weight: 800;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.order-fallback__copybtn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-.order-fallback__copybtn.copied {
-  background: linear-gradient(135deg, #3ddc84, #2bb673);
-}
-
 body.modal-open {
   overflow: hidden;
   overscroll-behavior: contain;
@@ -804,11 +630,7 @@ body.modal-open {
     align-items: flex-start;
   }
 
-  .order-modal#thanksModal {
-    align-items: center;
-  }
-
-  .order-modal#fallbackModal {
+  .order-modal#orderInfoModal {
     align-items: center;
   }
 
@@ -820,11 +642,7 @@ body.modal-open {
     height: auto;
   }
 
-  .order-modal#thanksModal .order-modal__dialog {
-    margin-top: 0;
-  }
-
-  .order-modal#fallbackModal .order-modal__dialog {
+  .order-modal#orderInfoModal .order-modal__dialog {
     margin-top: 0;
   }
 
